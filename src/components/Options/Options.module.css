@@ -1,0 +1,18 @@
+.optionsBtnContainer {
+  display: flex;
+  padding-top: 26px;
+  padding-bottom: 26px;
+  gap: 10px;
+}
+
+.optionsBtn {
+  padding: 10px 15px;
+  background-color: #efefef;
+  color: #242424;
+  border: solid 2px gray;
+  border-radius: 5px;
+}
+
+.optionsBtn:hover {
+  background-color: #ebeaea;
+}
