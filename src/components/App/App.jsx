@@ -30,7 +30,11 @@ export default function App() {
 
   // Обчислення додаткових значень додатку Total та Positive
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
-  const positiveFeedback = Math.round((feedback.good / totalFeedback) * 100);
+
+  let positiveFeedback = null;
+  if (totalFeedback !== 0) {
+    positiveFeedback = Math.round((feedback.good / totalFeedback) * 100);
+  }
 
   // Функція зміни стану об'єкта при ввзаємодії з додатком
   function updateFeedback(feedbackType) {
@@ -55,12 +59,15 @@ export default function App() {
     <>
       <Description />
       <Options onUpdate={updateFeedback} feedbackAvailability={totalFeedback} />
-      <Notification feedbackAvailability={totalFeedback} />
-      <Feedback
-        feedbackValue={feedback}
-        feedbackAvailability={totalFeedback}
-        positiveFeedbackValue={positiveFeedback}
-      />
+      {totalFeedback > 0 ? (
+        <Feedback
+          feedbackValue={feedback}
+          feedbackAvailability={totalFeedback}
+          positiveFeedbackValue={positiveFeedback}
+        />
+      ) : (
+        <Notification />
+      )}
     </>
   );
 }
